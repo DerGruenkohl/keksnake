@@ -1,8 +1,6 @@
 package gui;
 
 import actions.KeyHandler;
-import actions.voiceHandler;
-import util.VoiceListener;
 
 import javax.swing.*;
 

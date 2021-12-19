@@ -2,7 +2,6 @@ package actions;
 
 import game.Dir;
 import game.Snake;
-import util.VoiceListener;
 
 public class voiceHandler{
     public void VoiceAction() {
