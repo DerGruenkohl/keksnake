@@ -22,6 +22,7 @@ public class Main {
         boolean f = false;
         System.out.println(directory());
         String absolutePath = directory() + "bestscore.txt";
+        // Hier erstelle ich das dictionary für die Voice API
         try {
             File myObj = new File("dic2.dic");
             if (myObj.createNewFile()) {
@@ -45,6 +46,7 @@ public class Main {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+        // Hier erstelle ich das Language model für die Voice API
         try {
             File myObj = new File("lm2.lm");
             if (myObj.createNewFile()) {
@@ -105,12 +107,13 @@ public class Main {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
+        //Highscore auslesen
         try(BufferedReader bufferedReader = new BufferedReader(new FileReader(absolutePath))) {
             String line = bufferedReader.readLine();
             if(line != null) {
                 line = bufferedReader.readLine();
                 Snake.bestscore = line;
+
             }
         } catch (FileNotFoundException e) {
             // Exception handling
@@ -132,13 +135,13 @@ public class Main {
             // Exception handling
             System.out.println("failed to read");
         }
-
+        //Gui Erstellen
         Gui g = new Gui();
         GameClock gc = new GameClock();
 
         g.create();
         gc.start();
-
+        //Die Voice API aufrufen und verarbeiten
         Configuration config = new Configuration();
         config.setAcousticModelPath("");config.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
         config.setDictionaryPath("dic2.dic");
@@ -149,7 +152,7 @@ public class Main {
             speech.startRecognition(true);
             SpeechResult speechResult;
 
-            while (((speechResult = speech.getResult()) != null) && !f){
+            while (((speechResult = speech.getResult()) != null)){
                 f = true;
                 String voiceCommand = speechResult.getHypothesis();
                 System.out.println(voiceCommand);
