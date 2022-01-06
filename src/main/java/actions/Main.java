@@ -6,11 +6,15 @@ import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import edu.cmu.sphinx.api.SpeechResult;
 import game.Dir;
 import game.Snake;
-import gui.Gui;
+import gui.Game.Gui;
+import gui.Start.StartGUI;
 
+import javax.swing.*;
 import java.io.*;
 
 import static java.lang.Integer.parseInt;
+import static java.lang.Thread.sleep;
+
 public class Main {
 
     public static String directory(){
@@ -136,55 +140,10 @@ public class Main {
             System.out.println("failed to read");
         }
         //Gui Erstellen
-        Gui g = new Gui();
-        GameClock gc = new GameClock();
+        JFrame j = new StartGUI();
 
-        g.create();
-        gc.start();
-        //Die Voice API aufrufen und verarbeiten
-        Configuration config = new Configuration();
-        config.setAcousticModelPath("");config.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
-        config.setDictionaryPath("dic2.dic");
-        config.setLanguageModelPath("lm2.lm");
 
-        try {
-            LiveSpeechRecognizer speech = new LiveSpeechRecognizer(config);
-            speech.startRecognition(true);
-            SpeechResult speechResult;
 
-            while (((speechResult = speech.getResult()) != null)){
-                f = true;
-                String voiceCommand = speechResult.getHypothesis();
-                System.out.println(voiceCommand);
-                if (voiceCommand.equalsIgnoreCase("UP")) {
-                    if (!(Snake.head.getDir() == Dir.DOWN) && !Snake.waitToMove) {
-                        Snake.head.setDir(Dir.UP);
-                        Snake.waitToMove = true;
-                    }
-                    f = false;
-                } else if (voiceCommand.equalsIgnoreCase("LEFT")) {
-                    if (!(Snake.head.getDir() == Dir.RIGHT) && !Snake.waitToMove) {
-                        Snake.head.setDir(Dir.LEFT);
-                        Snake.waitToMove = true;
-                    }
-                    f = false;
-                } else if (voiceCommand.equalsIgnoreCase("DOWN")) {
-                    if (!(Snake.head.getDir() == Dir.UP) && !Snake.waitToMove) {
-                        Snake.head.setDir(Dir.DOWN);
-                        Snake.waitToMove = true;
-                    }
-                    f = false;
-                } else if ( voiceCommand.equalsIgnoreCase("RIGHT")) {
-                    if (!(Snake.head.getDir() == Dir.LEFT) && !Snake.waitToMove) {
-                        Snake.head.setDir(Dir.RIGHT);
-                        Snake.waitToMove = true;
-                    }
-                    f = false;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
     }
 }
