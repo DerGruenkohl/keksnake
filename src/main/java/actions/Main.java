@@ -1,15 +1,9 @@
 package actions;
 
-import clocks.GameClock;
-import edu.cmu.sphinx.api.Configuration;
-import edu.cmu.sphinx.api.LiveSpeechRecognizer;
-import edu.cmu.sphinx.api.SpeechResult;
-import game.Dir;
 import game.Snake;
-import gui.Game.Gui;
-import gui.Start.StartGUI;
+import util.OpenTheGui;
+import util.StartVoiceAPI;
 
-import javax.swing.*;
 import java.io.*;
 
 import static java.lang.Integer.parseInt;
@@ -140,7 +134,10 @@ public class Main {
             System.out.println("failed to read");
         }
         //Gui Erstellen
-        JFrame j = new StartGUI();
+        OpenTheGui gui = new OpenTheGui();
+        gui.Open();
+        StartVoiceAPI voiceAPI = new StartVoiceAPI();
+        voiceAPI.start();
 
 
 

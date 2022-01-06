@@ -1,6 +1,6 @@
 package game;
 
-import gui.Game.Gui;
+import gui.Gui;
 
 import java.awt.*;
 import java.util.ArrayList;

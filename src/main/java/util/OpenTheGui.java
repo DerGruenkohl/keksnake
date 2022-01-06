@@ -1,7 +1,7 @@
 package util;
 
 import clocks.GameClock;
-import gui.Game.Gui;
+import gui.Gui;
 
 public class OpenTheGui {
     public void Open(){
