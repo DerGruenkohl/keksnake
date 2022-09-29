@@ -1,6 +1,7 @@
 package gui.Game;
 
 import actions.KeyHandler;
+import actions.MouseHandler;
 
 import javax.swing.*;
 
@@ -19,6 +20,7 @@ public class Gui {
         jf.setLayout(null);
         jf.setResizable(false);
         jf.addKeyListener(new KeyHandler());
+        jf.addMouseListener(new MouseHandler());
 
         d = new Draw();
         d.setBounds(0,0,width,height);
